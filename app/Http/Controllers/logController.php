@@ -2,10 +2,14 @@
 
 namespace system_register\Http\Controllers;
 
+use Auth;
+use Session;
+use Redirect;
 use Illuminate\Http\Request;
-use system_register\User;
+use system_register\Http\Requests\LoginRequest;
+use system_register\Http\Controllers\Controller;
 
-class ccController extends Controller
+class logController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +18,7 @@ class ccController extends Controller
      */
     public function index()
     {
-        return view("usuarios");
+      
     }
 
     /**
@@ -33,17 +37,15 @@ class ccController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LoginRequest $request)
     {
-        $usuario = new User();   
-            $usuario->nombre = $request->input('nombre');
-            $usuario->ape_p = $request->input('apellido_p');
-            $usuario->ape_m = $request->input('apellido_m');
-            $usuario->area = $request->input('area');
-            $usuario->correo = $request->input('correo');
-            $usuario->nom_usuario = $request->input('nom_usuario');
-            $usuario->password = bcrypt($request->input('password'));
-            $usuario->save();
+
+        if(Auth::attempt(['nom_usuario' => $request['username'], 'password' => $request['password']])){
+            return Redirect::to('/viewss');
+        }
+        Session::flash('error_user', 'Datos incorrectos');
+        return Redirect('/');   
+
     }
 
     /**

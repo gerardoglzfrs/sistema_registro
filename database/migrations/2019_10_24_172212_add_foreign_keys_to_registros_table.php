@@ -14,7 +14,7 @@ class AddForeignKeysToRegistrosTable extends Migration {
 	{
 		Schema::table('registros', function(Blueprint $table)
 		{
-			$table->foreign('id_admin', 'fk_registros')->references('id_admin')->on('admins')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+			$table->foreign('id', 'fk_registros')->references('id')->on('users')->onUpdate('NO ACTION')->onDelete('NO ACTION');
 		});
 	}
 

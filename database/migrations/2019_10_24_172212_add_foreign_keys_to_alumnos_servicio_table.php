@@ -14,7 +14,7 @@ class AddForeignKeysToAlumnosServicioTable extends Migration {
 	{
 		Schema::table('alumnos_servicio', function(Blueprint $table)
 		{
-			$table->foreign('id_admin', 'fk_alumnos_servicio')->references('id_admin')->on('admins')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+			$table->foreign('id', 'fk_alumnos_servicio')->references('id')->on('users')->onUpdate('NO ACTION')->onDelete('NO ACTION');
 		});
 	}
 

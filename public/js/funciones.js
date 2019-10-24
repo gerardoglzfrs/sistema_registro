@@ -1,4 +1,4 @@
-window.onload=hora;
+/*window.onload=hora;
 fecha= new Date();
 function hora(){
     var hora = fecha.getHours();
@@ -19,4 +19,4 @@ function hora(){
     document.getElementById('hora').innerHTML=datos;
     fecha.setSeconds(fecha.getSeconds()+1);
     setTimeout("hora()",1000);
-}
+}*/

@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateAlumnosServicioTable extends Migration {
+class CreateRegistrosTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,16 +12,17 @@ class CreateAlumnosServicioTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('alumnos_servicio', function(Blueprint $table)
+		Schema::create('registros', function(Blueprint $table)
 		{
-			$table->integer('num_control');
+			$table->integer('num_control')->primary();
 			$table->string('nombre', 45);
 			$table->string('ape_p', 45);
 			$table->string('ape_m', 45);
 			$table->string('carrera', 45);
-			$table->string('area', 45);
-			$table->integer('id_admin')->index('fk_alumnos_servicio_idx');
-			$table->primary(['num_control','id_admin']);
+			$table->time('hora_ent');
+			$table->time('hora_sal')->nullable();
+			$table->date('fecha');
+			$table->integer('id')->nullable()->index('fk_registros_idx');
 		});
 	}
 
@@ -33,7 +34,7 @@ class CreateAlumnosServicioTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('alumnos_servicio');
+		Schema::drop('registros');
 	}
 
 }
