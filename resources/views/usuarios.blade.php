@@ -14,13 +14,12 @@
 <div class="container">
     @csrf
     {!! Form::open(['route'=>'cc.store', 'method'=>'POST', 'role' => 'form']) !!}
-
-                        <div class="form-group">    
+        <div class="form-group">    
                            <input type="text" name="nombre" placeholder="Nombre" class="form-control"  required>
                         </div>
                         <div class="form-group">    
                             <input type="text" name="apellido_p" placeholder="Apellido paterno" class="form-control" required>
-                        </div>
+      s                  </div>
     
                         <div class="form-group">    
                             <input type="text" name="apellido_m" placeholder="Apellidos materno" class="form-control" required>

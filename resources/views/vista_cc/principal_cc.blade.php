@@ -1,45 +1,5 @@
-@extends('layout.app')
-
-@section('title', 'CC')
-
-<div class="topnav">
-    <a class="active">Sistema de registro</a>
-    <a href="#Historial">Historial</a>
-</div> 
-
-@section('content2')
-<br>
-<div class="container-fluid">
-    <div class="row">   
-        <div class="col-sm-3" style="margin-top: 41px;">
-            <table style="font-size: 14px;">
-                <thead>
-                    <tr class="table-primary text-center">
-                        <th colspan="4">EN SERVICIO</th>
-                    </tr>   
-                    <tr class="table-info text-center">
-                        <th>Estatus</th>
-                        <th colspan="3">Nombre</th> 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Activo</td>
-                        <td colspan="3">Gerardo González Flores</td>
-                    </tr>
-                    <tr>
-                        <td>Activo</td>
-                        <td colspan="3">Emmanuel Gómez Miron</td>
-                    </tr>
-                    <tr>
-                        <td>Activo</td>
-                        <td colspan="3">Carlos Alberto Escalante Hernández</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        
-        <div class="col-sm-9">
+<div class="container">
+        <div class="col">
             <table>
                 <tr>
                     <th><h3>Fecha:<?php  $now = new \DateTime(); echo $now->format("F j Y,"); ?></h3></th>
@@ -142,8 +102,5 @@
                 </tbody>    
             </table>
         </div>
-    </div>
 </div>
 
-
-@endsection

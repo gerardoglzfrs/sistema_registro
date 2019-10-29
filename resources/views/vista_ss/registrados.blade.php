@@ -5,5 +5,5 @@
 @include('layout.navbar')
 
 @section('content')
-    w
+    
 @endsection

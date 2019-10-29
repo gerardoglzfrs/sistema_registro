@@ -4,8 +4,11 @@
 
 @include('alertas.error_user')
 
+<!--Custom style login-->
+<link rel="stylesheet" type="text/css" href="{{ asset("css/login.css") }}">
+
 @section('content')
-<!--Login-->
+<!--Login-->    
 <body style="background: #328cec; background: linear-gradient(to right, #91f1e6ea, rgb(123, 126, 129));">
     <div class="container">
         <div class="row">

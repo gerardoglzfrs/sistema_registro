@@ -1,16 +1,3 @@
-@extends('layout.app')
-
-@section('title', 'Servicio social')
-
-@include('layout.navbar')
-
-@include('alertas.inicio_serv')
-
-@section('content')
-
-<br>
-<a class="btn btn-success" data-toggle="modal" data-target="#inicio_serv">Iniciar servicio</a>
-<br><br>
 <table>
     <tr>
         <th><h3>Fecha:<?php $now = new \DateTime(); echo $now->format("F j Y,"); ?></h3></th>
@@ -18,7 +5,6 @@
     </tr>
 </table>
 
-<br>
 <table class="table table-responsive table-hover">
     <thead>
         <tr class="table-primary text-center">
@@ -56,7 +42,7 @@
             <td>Escalante</td>
             <td>Hernández</td>
             <td>ISC</td>
-            <td style="color:green;">Activo</td>
+            <td style="color:green;" class="">Activo</td>
             <td> <?php $hoy=date("d/m/y"); echo($hoy);?></td>
             <td> <?php $hoy=date("G:i"); echo($hoy);?></td> 
             <td>En espera</td>
@@ -75,4 +61,3 @@
     </tbody>    
 </table>
 
-@endsection

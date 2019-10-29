@@ -3,8 +3,9 @@
 namespace system_register\Http\Controllers;
 
 use Illuminate\Http\Request;
+use system_register\User;
 
-class ccController extends Controller
+class userController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class ccController extends Controller
      */
     public function index()
     {
-        return view("vista_cc.principal_cc");
+        return view('vista_sa.principal_sa');
     }
 
     /**
@@ -34,7 +35,12 @@ class ccController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $usuario = new User();   
+            $usuario->area = $request->input('area');
+            $usuario->tipo_usuario = $request->input('tipo_usuario');
+            $usuario->nom_usuario = $request->input('nom_usuario');
+            $usuario->password = bcrypt($request->input('password'));
+            $usuario->save();
     }
 
     /**
