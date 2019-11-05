@@ -12,15 +12,10 @@ class ssController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function grafica(){
-        
-    }
+   
     public function index()
     {
-
-        $Grph = DB::select("SELECT fecha, COUNT(*) 'alumnos' FROM registros GROUP BY fecha");
-        $Grphpie = DB::select("SELECT carrera, COUNT(*) 'total' from registros GROUP BY carrera");
-        return view('graficas.grph',['Grph'=>$Grph,'Grphpie'=>$Grphpie]);  
+    
     }
 
     /**

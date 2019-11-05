@@ -21,7 +21,19 @@ class opsController extends Controller
                 break;
 
             case 3:
-                return view("graficas.grph");
+                return view("vista_cc.registros");
+                break;
+            
+            case 4: 
+                return "hola";
+                break;
+                
+            case 5: 
+                return "hola";
+                break;
+
+            case 6:
+                return view("vista_sa.registrar");
                 break;
                 
             default:

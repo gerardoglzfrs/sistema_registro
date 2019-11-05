@@ -1,4 +1,4 @@
-//Funcion de la hora
+/*Funcion de la hora
 window.onload=hora;
 fecha= new Date();
 function hora(){
@@ -21,7 +21,7 @@ function hora(){
     fecha.setSeconds(fecha.getSeconds()+1);
     setTimeout("hora()",1000);
 }
-
+*/
 //Barra lateral derecha
 $(".sidebar-dropdown > a").click(function() {
     $(".sidebar-submenu").slideUp(200);
@@ -54,10 +54,9 @@ $(".sidebar-dropdown > a").click(function() {
 
 //Opciones de menu
  function menu(opcion){
+   var tok_key = $("#token1").val();
     $.ajax({
-      headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },  
+    headers: {'X-CSRF-TOKEN': tok_key},  
     type: "POST",
     url: 'ops',
     data: {opcion: opcion},
@@ -69,4 +68,6 @@ $(".sidebar-dropdown > a").click(function() {
     } 
   });
  }
+
+ 
 

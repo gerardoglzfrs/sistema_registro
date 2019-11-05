@@ -15,6 +15,7 @@ class CreateRegistrosTable extends Migration {
 		Schema::create('registros', function(Blueprint $table)
 		{
 			$table->integer('num_control')->primary();
+			$table->string('foto', 100);
 			$table->string('nombre', 45);
 			$table->string('ape_p', 45);
 			$table->string('ape_m', 45);

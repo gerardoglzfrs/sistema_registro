@@ -41,7 +41,7 @@ class logController extends Controller
     {
 
         if(Auth::attempt(['nom_usuario' => $request['username'], 'password' => $request['password']])){
-            return Redirect::to('/viewss');
+            return redirect('/principal');
         }
         Session::flash('error_user', 'Datos incorrectos');
         return Redirect('/');   

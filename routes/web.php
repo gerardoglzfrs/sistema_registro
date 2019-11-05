@@ -1,17 +1,21 @@
 <?php
-
+//Login
 Route::get('/', function () {
     return view('login');
 });
 
-Route::get('/viewss',function(){
-    return view('vista_ss.principal_ss');
+//Vista principal
+Route::get('/principal' , function(){
+    return view('index');
 });
 
 Route::resource('log', 'logController');
 
-Route::resource('sa', 'userController');
+Route::post('add', 'crudController@store');
+Route::get('show', 'crudController@listing');
 
 Route::post('ops', 'opsController@index');
 
-Route::resource('graficas', 'ssController');
+Route::post('num_control','ccController@registrar');
+Route::get('showStudents','ccController@showStudents');
+

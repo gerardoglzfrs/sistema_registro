@@ -3,80 +3,86 @@
 namespace system_register\Http\Controllers;
 
 use Illuminate\Http\Request;
+use system_register\Student;
+use Carbon\Carbon;
 
 class ccController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view("vista_cc.principal_cc");
+    public function registrar(){
+        $num_control = $_POST['num_control'];
+        $url = "http://167.114.218.98/sistema/services/alumno.php?no_control=".$num_control."";
+        $datos = (array)json_decode(file_get_contents($url));
+        foreach($datos as $dato){
+            $no_control = $dato->no_de_control;
+            $nombre = $dato->nombre_alumno;
+            $ap = $dato->apellido_paterno;
+            $am = $dato->apellido_materno;
+            $carrera = $dato->nombre_carrera;
+            $estatus = $dato->estatus_alumno;
+            $foto = $dato->foto;
+            
+            $url = str_replace("*","/", $foto);
+
+
+            $fecha = Carbon::now();
+            $student = new Student();
+            $student->num_control = $no_control;
+            $student->foto = $url;
+            $student->nombre = $nombre;
+            $student->ape_p = $ap;
+            $student->ape_m =$am;
+            $student->carrera = $carrera;
+            $student->hora_ent = $fecha->toTimeString();
+            $student->hora_sal = $fecha->toTimeString();
+            $student->fecha = $fecha->toDateString();
+            $student->id = 1;
+            $student->save();
+
+          
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function showStudents(){
+        $students = Student::all();
+        return response()->json($students->toArray());
+    }
+    
+
+    public function index()
+    {
+        
+    }
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
-        
+     
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($id)
     {
         //
