@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--Bootstrap css-->
-    <link rel="stylesheet" type="text/css"  id="bootstrap-css" href="{{ asset("css/bootstrap.min.css") }}">   
+    <link rel="stylesheet" type="text/css"  id="bootstrap-css" href="{{ asset("css/bootstrap.min.css") }}">
     <link rel="stylesheet" href="{{ asset("css/style.css") }}">
     <title>Sistema de registro</title>
 </head>
@@ -18,11 +18,13 @@
             <div class="sidebar-content">
                 <div class="sidebar-brand">
                     <a>Sistema</a>
+                    <div class="cerrar">
                     <div id="close-sidebar"><i class="fas fa-times"></i></div>
+                    </div>
                 </div>
                 <div class="sidebar-header">
                     <div class="user-pic">
-                        <img class="img-responsive img-rounded" style="width: 60px; height:60px;" src="{{ asset("img/avatar.png") }}" alt="User picture">
+                    <img class="img-responsive img-rounded" style="width: 60px; height:60px;" src="{{ asset("img/avatar.png") }}" alt="User picture">
                     </div>
                     <div class="user-info">
                         <span class="user-name">Gerardo<strong> González</strong></span>
@@ -30,7 +32,7 @@
                         <span class="user-status"><i class="fa fa-circle"></i><span> Online</span></span>
                     </div>
                 </div>
-                
+
                 <!-- sidebar-search  -->
                 <div class="sidebar-menu">
                     <ul>
@@ -48,7 +50,7 @@
                                 </ul>
                             </div>
                         </li>
-                        
+
                         <li class="sidebar-dropdown">
                             <a href="#"><i class="fa fa-laptop"></i><span> Centro de computo</span></a>
                             <div class="sidebar-submenu">
@@ -67,21 +69,21 @@
                         </li>
                     </ul>
                 </div>
-        
+
                 <div class="sidebar-menu">
                     <ul>
                         <li class="header-menu"><span>Consulta</span></li>
-                        <li class="sidebar-dropdown"><a href="#" onclick="menu(6);"><i class="fa fa-user"></i><span> Usuarios</span></a></li>        
+                        <li class="sidebar-dropdown"><a href="#" onclick="menu(6);"><i class="fa fa-user"></i><span> Usuarios</span></a></li>
                     </ul>
                 </div>
             </div>
-        
+
         <!-- sidebar-content (Iconos)-->
             <div class="sidebar-footer">
                 <a href="#Salir"><i class="fa fa-power-off"></i></a>
             </div>
         </nav>
-        
+
         <!-- Contenido principal -->
     <main class="page-content">
         <div class="container" id="contenido_principal">
@@ -98,7 +100,7 @@
                                     </div>
                                 </div>
                             </div>
-                               
+
                             <div class="col-6 col-sm-6">
                                 <div class="card">
                                     <img class="card-img-top" src="..." alt="Card image cap">
@@ -134,12 +136,12 @@
                             </div>
                         </div>
                     </div>
-                </div>     
+                </div>
         </div>
     </main>
 </div>
-        
-        
+
+
 
 <script src="{{ asset("font_awesome/all.js") }}"></script>
 <script src="{{ asset("js/jquery.slim.min.js") }}"></script>
@@ -148,7 +150,7 @@
 <script src="{{ asset("js/bootstrap.bundle.min.js") }}"></script>
 <script src="{{ asset("js/jquery.min.js") }}"></script>
 <script src="{{ asset("js/funciones.js") }}"></script>
- 
+
 </body>
 </html>
 

@@ -19,3 +19,4 @@ Route::post('ops', 'opsController@index');
 Route::post('num_control','ccController@registrar');
 Route::get('showStudents','ccController@showStudents');
 
+Route::post('nuevo_servicio','ssController@registrar');

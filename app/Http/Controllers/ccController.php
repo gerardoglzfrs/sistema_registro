@@ -20,7 +20,7 @@ class ccController extends Controller
             $carrera = $dato->nombre_carrera;
             $estatus = $dato->estatus_alumno;
             $foto = $dato->foto;
-            
+
             $url = str_replace("*","/", $foto);
 
 
@@ -38,20 +38,21 @@ class ccController extends Controller
             $student->id = 1;
             $student->save();
 
-          
+
         }
     }
 
 
     public function showStudents(){
-        $students = Student::all();
+        $students = Student::where('fecha',Carbon::now()->toDateString())->orderBy('hora_ent','desc')->get();
+//        $students = Student::all();
         return response()->json($students->toArray());
     }
-    
+
 
     public function index()
     {
-        
+
     }
 
     public function create()
@@ -59,19 +60,19 @@ class ccController extends Controller
         //
     }
 
-    
+
     public function store(Request $request)
     {
-     
+
     }
 
-    
+
     public function show($id)
     {
         //
     }
 
-    
+
     public function edit($id)
     {
         //
@@ -82,7 +83,7 @@ class ccController extends Controller
         //
     }
 
-    
+
     public function destroy($id)
     {
         //
