@@ -8,8 +8,8 @@
 <table class="table table-responsive table-hover" style="font-size: 10px;">
     <thead>
     <tr class="table-primary text-center">
-        <th colspan="7">INFORMACION DEL ALUMNO</th>
-        <th colspan="5">REGISTRO</th>
+        <th colspan="6">INFORMACION DEL ALUMNO</th>
+        <th colspan="4">REGISTRO</th>
     </tr>
     <tr class="table-info">
         <th>#</th>
@@ -21,7 +21,6 @@
         <th>Carrera</th>
         <th>Fecha</th>
         <th>Entrada</th>
-        <th>Salida</th>
     </tr>
     </thead>
     <tbody id="students_table">
@@ -63,11 +62,11 @@
     $.get(route, function(res){
         $(res).each(function(key, value){
             contador=contador+1;
-            students_table.append("<tr><td>"+contador+"</td><td id='altimg"+contador+"'><img style='width: 50px;  height: 50px;' src="+value.foto+" alt='' onerror='alerta("+contador+")';'></td><td>"+value.num_control+"</td><td>"+value.nombre+"</td><td>"+value.ape_p+"</td><td>"+value.ape_m+"</td><td>"+value.carrera+"</td><td>"+value.fecha+"</td><td>"+value.hora_ent+"</td><td>"+value.hora_sal+"</td></tr>")
+            students_table.append("<tr><td>"+contador+"</td><td id='altimg"+contador+"'><img style='width: 50px;  height: 50px;' src="+value.foto+" alt='' onerror='alterna("+contador+")';'></td><td>"+value.num_control+"</td><td>"+value.nombre+"</td><td>"+value.ape_p+"</td><td>"+value.ape_m+"</td><td>"+value.carrera+"</td><td>"+value.fecha+"</td><td>"+value.hora_ent+"</td></tr>")
         });
     });
   });
-  function alerta(contador){
+  function alterna(contador){
     contador = "#altimg"+contador;
     $(contador).html("<img style='width: 50px;  height: 50px;' src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9VL5EX1RHB-K4sJ7kjE7AEwMMLKNBc9KWi3PT5HBmCIkwga8P' />");
   }

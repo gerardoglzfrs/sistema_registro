@@ -14,16 +14,16 @@ class CreateRegistrosTable extends Migration {
 	{
 		Schema::create('registros', function(Blueprint $table)
 		{
-			$table->integer('num_control')->primary();
 			$table->string('foto', 100);
+			$table->integer('num_control');
 			$table->string('nombre', 45);
 			$table->string('ape_p', 45);
 			$table->string('ape_m', 45);
 			$table->string('carrera', 45);
 			$table->time('hora_ent');
-			$table->time('hora_sal')->nullable();
 			$table->date('fecha');
-			$table->integer('id')->nullable()->index('fk_registros_idx');
+			$table->integer('id')->index('fk_registros_idx');
+			$table->primary(['num_control','id']);
 		});
 	}
 

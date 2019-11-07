@@ -18,7 +18,6 @@ class ccController extends Controller
             $ap = $dato->apellido_paterno;
             $am = $dato->apellido_materno;
             $carrera = $dato->nombre_carrera;
-            $estatus = $dato->estatus_alumno;
             $foto = $dato->foto;
 
             $url = str_replace("*","/", $foto);
@@ -26,14 +25,13 @@ class ccController extends Controller
 
             $fecha = Carbon::now();
             $student = new Student();
-            $student->num_control = $no_control;
             $student->foto = $url;
+            $student->num_control = $no_control;
             $student->nombre = $nombre;
             $student->ape_p = $ap;
             $student->ape_m =$am;
             $student->carrera = $carrera;
             $student->hora_ent = $fecha->toTimeString();
-            $student->hora_sal = $fecha->toTimeString();
             $student->fecha = $fecha->toDateString();
             $student->id = 1;
             $student->save();

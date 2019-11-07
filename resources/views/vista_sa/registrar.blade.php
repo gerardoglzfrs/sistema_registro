@@ -52,7 +52,7 @@
 
 <script>
   //Agregar usuario
-    $( "#btn_create").click(function(event){
+    $("#btn_create").click(function(event){
       event.preventDefault();
       var area = $('#area').val();
       var tipo_usuario = $('#tipo_usuario').val();

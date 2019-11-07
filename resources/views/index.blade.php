@@ -42,7 +42,7 @@
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="#" onclick="menu(1);"> <i class="fa fa-inbox"></i> Alumnos registrados</a>
+                                        <a href="#" onclick="menu(1);"> <i class="fa fa-inbox"></i> Alumnos en servicio</a>
                                     </li>
                                     <li>
                                         <a href="#" onclick="menu(2);"> <i class="fa fa-history"></i> Historial del alumno</a>
@@ -92,7 +92,7 @@
                         <div class="row">
                             <div class="col-6 col-sm-6">
                                 <div class="card">
-                                    <img class="card-img-top" src="..." alt="Card image cap">
+                                    <img class="card-img-top" src="" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="card-title">Card title</h5>
                                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -103,7 +103,7 @@
 
                             <div class="col-6 col-sm-6">
                                 <div class="card">
-                                    <img class="card-img-top" src="..." alt="Card image cap">
+                                    <img class="card-img-top" src="" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="card-title">Card title</h5>
                                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -116,7 +116,7 @@
                         <div class="row">
                             <div class="col-6 col-sm-6">
                                 <div class="card">
-                                    <img class="card-img-top" src="..." alt="Card image cap">
+                                    <img class="card-img-top" src="" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="card-title">Card title</h5>
                                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -126,7 +126,7 @@
                             </div>
                             <div class="col-6 col-sm-6">
                                 <div class="card">
-                                <img class="card-img-top" src="..." alt="Card image cap">
+                                <img class="card-img-top" src="" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="card-title">Card title</h5>
                                         <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>

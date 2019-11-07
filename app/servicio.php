@@ -15,7 +15,7 @@ class servicio extends Model
      * @var array
      */
     protected $fillable = [
-        'num_control', 'nombre', 'ape_p', 'ape_m', 'carrera', 'area', 'id'
+        'foto','num_control', 'nombre', 'ape_p', 'ape_m', 'carrera', 'area', 'id'
     ];
 
     public $timestamps = false;

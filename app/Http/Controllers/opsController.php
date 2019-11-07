@@ -13,11 +13,11 @@ class opsController extends Controller
     
         switch ($opcion) {
             case 1:
-                return view("vista_ss.principal_ss");
+                return view("vista_ss.servicio");
                 break;
             
             case 2:
-                return view("vista_cc.principal_cc");
+                return view("vista_ss.historial_Servicio");
                 break;
 
             case 3:

@@ -14,6 +14,7 @@ class CreateAlumnosServicioTable extends Migration {
 	{
 		Schema::create('alumnos_servicio', function(Blueprint $table)
 		{
+			$table->string('foto', 100);
 			$table->integer('num_control');
 			$table->string('nombre', 45);
 			$table->string('ape_p', 45);
