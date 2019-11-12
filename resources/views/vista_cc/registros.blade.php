@@ -1,11 +1,14 @@
-{!! Form::open(['class'=>'form-inline md-form mr-auto mb-4', 'method'=>'POST']) !!}
-    @csrf
-    <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token_r">
-    <input class="form-control mr-sm-2" type="text" id="num_control" placeholder="Número de control" pattern="[0-9]{8}" maxlength="8" required>
-    {!! Form::submit('Aceptar',['class'=>'btn btn-outline-success btn-rounded btn-md my-0', 'id'=>'registrarNC']) !!}
-{!! Form::close() !!}
+<div style="display: none;" id="error"></div>
 
-<table class="table table-responsive table-hover" style="font-size: 10px;">
+<h4>Ingrese un número de control</h4>
+  {!! Form::open(['class'=>'form-inline md-form mr-auto mb-4', 'method'=>'POST']) !!}
+      @csrf
+      <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token_r">
+      {!! Form::text('num_control', null, ['class'=>'form-control mr-sm-2', 'id'=>'num_control', 'placeholder'=>'Número de control', 'required', 'pattern'=>'[0-9]{8}', 'maxlength'=>'8']) !!}
+      {!! Form::submit('Aceptar',['class'=>'btn btn-outline-success btn-rounded btn-md my-0', 'id'=>'registrarNC']) !!}
+  {!! Form::close() !!}
+    
+<table class="table table-responsive table-hover" id="centroComputo" >
     <thead>
     <tr class="table-primary text-center">
         <th colspan="6">INFORMACION DEL ALUMNO</th>
@@ -23,7 +26,7 @@
         <th>Entrada</th>
     </tr>
     </thead>
-    <tbody id="students_table">
+    <tbody id="students_table" style="font-size: 10px;">
 
     </tbody>
 </table>
@@ -34,6 +37,25 @@
     var num_control = $('#num_control').val();
     var token_r = $('#token_r').val();
 
+    if(num_control==""){
+      $(document).ready(function(){
+      setTimeout(function(){
+        $("#error").show().html("<div class='alert alert-danger' role='alert'>Ingrese un número de control</div>").fadeOut(3000);
+      });
+    });
+    }else if(!/^([0-9])*$/.test(num_control)){
+        $(document).ready(function(){
+      setTimeout(function(){
+        $("#error").show().html("<div class='alert alert-danger' role='alert'>Número de control no valido</div>").fadeOut(3000);
+      });
+    });
+    }else if(num_control.length!=8){
+    $(document).ready(function(){
+      setTimeout(function(){
+        $("#error").show().html("<div class='alert alert-danger' role='alert'>Ingrese los 8 digitos</div>").fadeOut(3000);
+      });
+    });
+    }else{
     $.ajax({
         headers: {'X-CSRF-TOKEN': token_r},
         url: "{{ url('num_control') }}",
@@ -42,14 +64,16 @@
             num_control:num_control
         },
         beforeSend: function(){
-            $("#contenido_principal").html("<img src='img/ajax-loader.gif')'>");
+            $("#contenido_principal").html("<div class='loader'>Loading...</div>");
         },
         success: function(respuesta){
             //$("#contenido_principal").html(respuesta);
             menu(3);
         }
     });
+    }
   });
+
   $(document).keydown(function(){
     $("#num_control").focus();
   });

@@ -24,132 +24,80 @@
                 </div>
                 <div class="sidebar-header">
                     <div class="user-pic">
-                    <img class="img-responsive img-rounded" style="width: 60px; height:60px;" src="{{ asset("img/avatar.png") }}" alt="User picture">
+                    <img class="img-responsive " style="width: 60px; height:40px;" src="{{ asset("img/logotec.png") }}" alt="User picture">
                     </div>
                     <div class="user-info">
-                        <span class="user-name">Gerardo<strong> González</strong></span>
-                        <span class="user-role">Administrador</span>
-                        <span class="user-status"><i class="fa fa-circle"></i><span> Online</span></span>
+                        <span class="user-name">{{ Auth::user()->area }}</strong></span>
+                        <span class="user-role">{{ Auth::user()->tipo_usuario }}</span>
+                        <span class="user-status"><i class="fas  fa-circle"></i><span> Online</span></span>
                     </div>
                 </div>
 
-                <!-- sidebar-search  -->
-                <div class="sidebar-menu">
-                    <ul>
-                        <li class="header-menu"><span>Información general</span></li>
-                        <li class="sidebar-dropdown">
-                            <a href="#"><i class="fa fa-users"></i><span> Servicio social</span></a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="#" onclick="menu(1);"> <i class="fa fa-inbox"></i> Alumnos en servicio</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="menu(2);"> <i class="fa fa-history"></i> Historial del alumno</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-
-                        <li class="sidebar-dropdown">
-                            <a href="#"><i class="fa fa-laptop"></i><span> Centro de computo</span></a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="#" onclick="menu(3);"><i class="fa fa-eraser"></i> Registros</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="menu(4);"><i class="fa fa-eraser"></i> Estadisticas</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="menu(5);"><i class="fa fa-angry"></i> Alumnos frecuentes</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="sidebar-menu">
-                    <ul>
-                        <li class="header-menu"><span>Consulta</span></li>
-                        <li class="sidebar-dropdown"><a href="#" onclick="menu(6);"><i class="fa fa-user"></i><span> Usuarios</span></a></li>
-                    </ul>
-                </div>
+                <!-- sidebar-search incluir aqui -->
+            @switch(Auth::user()->area)
+                @case('Servicio social')
+                    @include('opciones.ss')
+                    @break
+                @case('Recepción')
+                    @include('opciones.cc')
+                    @break
+                @case('Supervición')
+                    @include('opciones.sa')
+                @break
+                    @break
+                @default
+            @endswitch
             </div>
 
         <!-- sidebar-content (Iconos)-->
             <div class="sidebar-footer">
-                <a href="#Salir"><i class="fa fa-power-off"></i></a>
+                <a data-toggle="modal" data-target="#modalConfirm"><i class="fa fa-sign-out-alt"></i></a>
             </div>
         </nav>
-
+       
         <!-- Contenido principal -->
-    <main class="page-content">
+    <main class="page-content"> 
         <div class="container" id="contenido_principal">
-            <h2>Contenido principal</h2>
-                <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-6 col-sm-6">
-                                <div class="card">
-                                    <img class="card-img-top" src="" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                        <p class="card-text"><small class="text-muted">Last updated  mins ago</small></p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-6 col-sm-6">
-                                <div class="card">
-                                    <img class="card-img-top" src="" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-6 col-sm-6">
-                                <div class="card">
-                                    <img class="card-img-top" src="" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-sm-6">
-                                <div class="card">
-                                <img class="card-img-top" src="" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            
         </div>
     </main>
 </div>
 
+<!--Modal-->
+<div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+        <div class="modal-content text-center">
+            <div class="modal-header d-flex justify-content-center">
+              <p class="heading">¿Estas seguro de salir?</p>
+            </div>
+           <!--Footer-->
+            <div class="modal-footer flex-center">
+              <a href="{{ url('/logout') }}" class="btn  btn-outline-success" style="width: 65px;">Si</a>
+              <a class="btn  btn-danger waves-effect" style="color: white;" data-dismiss="modal">No</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End model-->
 
-
-<script src="{{ asset("font_awesome/all.js") }}"></script>
+<script src="{{ ('font_awesome/all.js') }}"></script>
 <script src="{{ asset("js/jquery.slim.min.js") }}"></script>
 <script src="{{ asset("js/popper.min.js") }}"></script>
 <script src="{{ asset("js/bootstrap.min.js") }}"></script>
 <script src="{{ asset("js/bootstrap.bundle.min.js") }}"></script>
 <script src="{{ asset("js/jquery.min.js") }}"></script>
 <script src="{{ asset("js/funciones.js") }}"></script>
+<script src="{{ asset("js/datatables.min.js") }}"></script>
+
+@php
+    if(Auth::user()->area=='Servicio social'){
+        echo '<script>menu(1)</script>';
+    }else if(Auth::user()->area=='Recepción'){
+        echo '<script>menu(3)</script>';
+    }else {
+        echo '<script>menu(6)</script>';
+    }
+@endphp
 
 </body>
 </html>

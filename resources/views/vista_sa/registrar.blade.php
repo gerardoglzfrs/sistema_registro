@@ -7,6 +7,12 @@
       {!! Form::open(['method'=>'POST', 'id'=>'reg_user']) !!}
       @csrf
       <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token">
+      <div class="form-control">
+        <select name="areas" id="areass">
+          <option value="centro de computo">Centro de computo</option>
+          <option value="centro de computo">Servicio social</option>
+        </select>
+      </div>
           <div class="form-group">    
               <input type="text" id="area" name="area" placeholder="area" class="form-control" required>
           </div>
@@ -35,7 +41,7 @@
                     <th>Area</th>
                     <th>Tipo de usuario</th>
                     <th>Nombre</th>
-                    <th>Contraseña</th>
+
                     <th>Opciones</th>
                 </tr>
             </thead>
@@ -71,7 +77,7 @@
             password: password
           },
           beforeSend: function(){
-            $("#contenido_principal").html("<img src='img/ajax-loader.gif')'>");
+            $("#contenido_principal").html("<div class='loader'>Loading...</div>");
           },
           success: function(respuesta){
             menu(6);
@@ -87,10 +93,8 @@
     $.get(route, function(res){
       $(res).each(function(key,value){
         contador=contador+1;
-        tabla_user.append("<tr> <td>"+contador+"</td> <td>"+value.area+"</td><td>"+value.tipo_usuario+"</td><td>"+value.nom_usuario+"</td><td>"+value.password+"</td> <td class='text-center'> <a href='#editar'><span class='fa fa-edit'></span></a> <a href='#borrar'><span  class='fa fa-trash'></span></a></td> </tr>");
+        tabla_user.append("<tr> <td>"+contador+"</td> <td>"+value.area+"</td><td>"+value.tipo_usuario+"</td><td>"+value.nom_usuario+"</td><td class='text-center'> <a href='#editar'><span class='fa fa-edit'></span></a> <a href='#borrar'><span  class='fa fa-trash'></span></a></td> </tr>");
       });
     });
    });
-
-
 </script>

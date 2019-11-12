@@ -15,13 +15,13 @@ function hora(){
     if (segundos<10) {
         segundos = '0'+segundos;
     }
-    datos=hora+":"+minutos+":"+segundos;
+    var datos=hora+":"+minutos+":"+segundos;
 
     document.getElementById("hora").innerHTML=datos;
     fecha.setSeconds(fecha.getSeconds()+1);
     setTimeout("hora()",1000);
-}
-*/
+}*/
+
 //Barra lateral derecha
 $(".sidebar-dropdown > a").click(function() {
     $(".sidebar-submenu").slideUp(200);
@@ -61,7 +61,7 @@ $(".sidebar-dropdown > a").click(function() {
     url: 'ops',
     data: {opcion: opcion},
     beforeSend: function(){
-      $("#contenido_principal").html("<img src='img/ajax-loader.gif')'>");
+      $("#contenido_principal").html("<div class='loader'>Loading...</div>");
     },
     success: function(respuesta){
       $("#contenido_principal").html(respuesta)

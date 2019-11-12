@@ -12,6 +12,7 @@ class opsController extends Controller
         //echo "Opciones seleccionadas".$opcion;
     
         switch ($opcion) {
+            
             case 1:
                 return view("vista_ss.servicio");
                 break;
@@ -25,16 +26,16 @@ class opsController extends Controller
                 break;
             
             case 4: 
-                return "hola";
+                return 'Graficas';
                 break;
                 
-            case 5: 
-                return "hola";
+            case 5:
+                return view("vista_sa.registrar");
                 break;
 
             case 6:
-                return view("vista_sa.registrar");
-                break;
+                return view("inicio");
+                    break;
                 
             default:
                 echo "Erorr. Contacta al administrador";

@@ -14,8 +14,8 @@ class CreateHorasServicioTable extends Migration {
 	{
 		Schema::create('horas_servicio', function(Blueprint $table)
 		{
-			$table->integer('num_control')->primary();
-			$table->string('fecha', 45);
+			$table->integer('num_control')->index('fk_horas_servicio_idx');
+			$table->date('fecha');
 			$table->time('hora_ent');
 			$table->time('hora_sal')->nullable();
 		});

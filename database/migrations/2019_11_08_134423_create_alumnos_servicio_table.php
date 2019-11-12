@@ -14,15 +14,15 @@ class CreateAlumnosServicioTable extends Migration {
 	{
 		Schema::create('alumnos_servicio', function(Blueprint $table)
 		{
+			$table->integer('num_control')->unique('num_control_UNIQUE');
 			$table->string('foto', 100);
-			$table->integer('num_control');
 			$table->string('nombre', 45);
 			$table->string('ape_p', 45);
 			$table->string('ape_m', 45);
 			$table->string('carrera', 45);
-			$table->string('area', 45);
+			$table->string('area', 45)->nullable();
+			$table->date('inicio_serv');
 			$table->integer('id')->index('fk_alumnos_servicio_idx');
-			$table->primary(['num_control','id']);
 		});
 	}
 

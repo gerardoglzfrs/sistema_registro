@@ -33,7 +33,7 @@ class ccController extends Controller
             $student->carrera = $carrera;
             $student->hora_ent = $fecha->toTimeString();
             $student->fecha = $fecha->toDateString();
-            $student->id = 1;
+            $student->id = 3;
             $student->save();
 
 
