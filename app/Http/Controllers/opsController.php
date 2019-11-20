@@ -26,7 +26,7 @@ class opsController extends Controller
                 break;
             
             case 4: 
-                return 'Graficas';
+                return view('graficas.grph');
                 break;
                 
             case 5:

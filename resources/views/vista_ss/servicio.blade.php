@@ -1,13 +1,12 @@
-<div style="display: inline">
-    <h4>Iniciar servicio</h4>
-    <p>Para iniciar y finalizar el proceso ingrese el numero de control.</p>
-    {!! Form::open(['class'=>'form-inline md-form mr-auto mb-4', 'method'=>'POST']) !!}
-        @csrf
-        <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token_Service">
-        <input class="form-control mr-sm-2" type="text" id="num_control" placeholder="Número de control" pattern="[0-9]{8}" maxlength="8" required>
-        {!! Form::submit('Iniciar',['class'=>'btn btn-outline-success btn-rounded btn-md my-0', 'id'=>'inicioServ']) !!}
-    {!! Form::close() !!}
-</div>
+<div style="display: none;" id="error"></div>
+<h4>Iniciar servicio</h4>
+<p>Para iniciar y finalizar el proceso ingrese el numero de control.</p>
+{!! Form::open(['class'=>'form-inline md-form mr-auto mb-4', 'method'=>'POST']) !!}
+    @csrf
+    <input type="hidden" name="_token" value="{{ csrf_token() }}" id="token_Service">
+    <input class="form-control mr-sm-2" type="text" id="num_control" placeholder="Número de control" pattern="[0-9]{8}" maxlength="8" required>
+    {!! Form::submit('Iniciar',['class'=>'btn btn-outline-success btn-rounded btn-md my-0', 'id'=>'inicioServ']) !!}
+{!! Form::close() !!}
 
 <table class="table table-responsive table-hover" style="font-size: 11px;">
     <thead>
@@ -48,7 +47,7 @@ $('#inicioServ').click(function(event){
       });
     });
     }else if(!/^([0-9])*$/.test(num_control)){
-        $(document).ready(function(){
+      $(document).ready(function(){
       setTimeout(function(){
         $("#error").show().html("<div class='alert alert-danger' role='alert'>Número de control no valido</div>").fadeOut(3000);
       });

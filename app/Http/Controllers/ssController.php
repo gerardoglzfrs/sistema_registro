@@ -7,7 +7,7 @@ use system_register\servicio;
 use system_register\Hour;
 use Carbon\Carbon;
 use DB;
-
+use Session;
 
 class ssController extends Controller
 {  
@@ -39,16 +39,7 @@ class ssController extends Controller
         return response()->json($dato->toArray());
     }
 
-    public function totalHora(){
-        $inicio = DB::table('horas_servicio')->select('hora_ent');
-        $fin = DB::table('horas_servicio')->select('hora_sal');
-
-        $total = $inicio->diff($fin)->format('%H:%i:%S');
-    }
-
     public function alumnosReg(){
-       //$datos= Student::all();
-        //$datos = DB::select('select * from alumnos_servicio');
         $datos = DB::select("SELECT
         alumnos_servicio.foto,
         alumnos_servicio.num_control,
@@ -65,9 +56,21 @@ class ssController extends Controller
         return response()->json($datos);
     }
 
+    public function online(){
+        $fecha = Carbon::now();
+        $dato = DB::table('alumnos_servicio')
+        ->select(
+            'alumnos_servicio.nombre',
+            'alumnos_servicio.estatus'
+        )
+        ->get();
+        return response()->json($dato);
+    }
+
     public function store(Request $request)
     {
-        if(Hour::where('num_control',$request['num_control'])->where('hora_sal',null)->first()){
+        $fecha = Carbon::now();
+        if(Hour::where('num_control',$request['num_control'])->where('hora_sal',null)->where('fecha',$fecha->toDateString())->first()){
             $this->update($request['num_control']);
         }else{
             $fecha = Carbon::now();
@@ -76,6 +79,10 @@ class ssController extends Controller
             $serv->fecha = $fecha->toDateString();
             $serv->hora_ent = $fecha->toTimeString();
             $serv->save();
+
+            DB::table('alumnos_servicio')
+            ->where('num_control',$request['num_control'])
+            ->update(array('estatus'=>1));
         }
     }
 
@@ -83,9 +90,12 @@ class ssController extends Controller
         $fecha = Carbon::now();
         DB::table('horas_servicio')
         ->where('num_control',$num_control)
-        ->where('fecha',$fecha->toDateString())
         ->where('hora_sal',null)
         ->update(array('hora_sal'=>$fecha->toTimeString()));
+
+        DB::table('alumnos_servicio')
+        ->where('num_control',$num_control)
+        ->update(array('estatus'=>0));
     }
 
     public function newStudent(){
@@ -113,18 +123,25 @@ class ssController extends Controller
             $url = str_replace("*", "/", $foto);
 
             $fecha = Carbon::now();
+            $id = $request->num_control;
+            $query = servicio::where('num_control','=',$id);
+            if($query){
+               Session::flash('user_found','El usuario ya se ecuentra registrado');
+               return view('vista_ss.historial_Servicio');
+            }else{
+                $servicio = new servicio();
+                $servicio->num_control = $request->num_control;
+                $servicio->foto = $url;
+                $servicio->nombre = $request->nombre;
+                $servicio->ape_p = $request->ape_p;
+                $servicio->ape_m = $request->ape_m;
+                $servicio->carrera = $request->carrera;
+                $servicio->area = 'Recepción';
+                $servicio->inicio_serv = $fecha->toDateString();
+                $servicio->id = 2;
+                $servicio->save();
+            }
 
-            $servicio = new servicio();
-            $servicio->num_control = $request->num_control;
-            $servicio->foto = $url;
-            $servicio->nombre = $request->nombre;
-            $servicio->ape_p = $request->ape_p;
-            $servicio->ape_m = $request->ape_m;
-            $servicio->carrera = $request->carrera;
-            $servicio->area = 'Recepción';
-            $servicio->inicio_serv = $fecha->toDateString();
-            $servicio->id = 2;
-            $servicio->save();
 
             return view('vista_ss.historial_Servicio');
             

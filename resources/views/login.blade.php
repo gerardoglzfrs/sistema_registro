@@ -12,11 +12,10 @@
 </head>
 
 <body style="background: #328cec; background: linear-gradient(to right, #91f1e6ea, rgb(123, 126, 129));">
-@include('alertas.error_user')
-<div class="container">
-    <div class="row">
-        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto" style="margin-top: 10px;">
-            <div class="card card-signin my-5" style="padding-top: 30px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto" style="margin-top: 5px;">
+            <div class="card card-signin my-5" style="padding-top: 20px;">
                 <div class="d-flex justify-content-center"  style="padding-top: 30px;">
                     <div class="brand_logo_container">
                         <img src="{{ asset("img/logotec.png") }}" class="brand_logo" alt="Logo">
@@ -28,25 +27,31 @@
                     <hr class="my-4"> 
                     {!! Form::open(['route'=>'log.store', 'method'=>'POST']) !!}
                         @csrf
-                        <div class="form-group">
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
                             <input type="text" class="form-control" placeholder="Usuario" name="username" required>
                         </div>
-                        <div class="form-group">
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
                             <input type="password" class="form-control" placeholder="Contraseña" name="password" required>
                         </div>
-                        <div class="custom-control custom-checkbox mb-3">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1">
-                            <label class="custom-control-label" for="customCheck1">Recordar contraseña</label>
-                        </div>
+                        @include('alertas.error_user')
                         {!! Form::submit('Ingresar',['class'=>'btn btn-lg btn-success btn-block text-uppercase']) !!}
                     {!! Form::close() !!} 
-                    <hr class="my-4"> 
+                    <hr class="my-3"> 
+                    <div>
+                        <p style="font-size: 12px;" class="text-center">©2019 Sistema de registros</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-            
+       
 <script src="{{ asset("font_awesome/all.js") }}"></script>
 <script src="{{ asset("js/jquery.slim.min.js") }}"></script>
 <script src="{{ asset("js/popper.min.js") }}"></script>

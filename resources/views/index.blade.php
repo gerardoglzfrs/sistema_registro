@@ -7,6 +7,7 @@
     <!--Bootstrap css-->
     <link rel="stylesheet" type="text/css"  id="bootstrap-css" href="{{ asset("css/bootstrap.min.css") }}">
     <link rel="stylesheet" href="{{ asset("css/style.css") }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
     <title>Sistema de registro</title>
 </head>
 
@@ -58,7 +59,7 @@
         <!-- Contenido principal -->
     <main class="page-content"> 
         <div class="container" id="contenido_principal">
-            
+        
         </div>
     </main>
 </div>
@@ -72,15 +73,14 @@
             </div>
            <!--Footer-->
             <div class="modal-footer flex-center">
-              <a href="{{ url('/logout') }}" class="btn  btn-outline-success" style="width: 65px;">Si</a>
+              <a href="{{ url('/logout') }}" class="btn  btn-outline-success" style="width: 50px;">Si</a>
               <a class="btn  btn-danger waves-effect" style="color: white;" data-dismiss="modal">No</a>
             </div>
         </div>
     </div>
 </div>
-<!--End model-->
 
-<script src="{{ ('font_awesome/all.js') }}"></script>
+<!--End model-->
 <script src="{{ asset("js/jquery.slim.min.js") }}"></script>
 <script src="{{ asset("js/popper.min.js") }}"></script>
 <script src="{{ asset("js/bootstrap.min.js") }}"></script>

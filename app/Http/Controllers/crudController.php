@@ -5,6 +5,11 @@ namespace system_register\Http\Controllers;
 use Illuminate\Http\Request;
 use system_register\User;
 use Validator;
+use DB;
+use Session;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Encryption\Encrypter;
+use Illuminate\Support\Facades\Auth;
 
 class crudController extends Controller
 {
@@ -14,13 +19,6 @@ class crudController extends Controller
         return view('vista_sa.registrar');
     }
 
-    
-    public function create()
-    {
-        //
-    }
-
-    
     public function store(Request $request)
     {
         $user = new User();
@@ -37,26 +35,23 @@ class crudController extends Controller
         return response()->json($allUser->toArray());
     }
     
-    public function show($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $edit = User::find($id);
+        return response()->json($edit);
     }
+    public function update(Request $request, $id){
+        $contrasena = DB::select("SELECT password FROM users where id = $id");
 
-    
-    public function edit($id)
-    {
-        //
-    }
-
-    
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    
-    public function destroy($id)
-    {
-        //
+        $update = User::find($id);
+        $update->nom_usuario = $request->get('nom_usuario');
+        if($request->get('password')==""){
+        }else{
+            $update->password = bcrypt($request->get('password'));
+        }
+        $update->save();
+        Session::flash('user_update','El usuario ha sido actualizado');
+        return response()->json(['success'=>'actualizado']);
     }
 }
+

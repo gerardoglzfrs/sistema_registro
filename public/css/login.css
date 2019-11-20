@@ -1,12 +1,12 @@
 :root {
     --input-padding-x: 1.5rem;
-    --input-padding-y: .75rem;
+    --input-padding-y: .80rem;
   }
   
   .card-signin {
     border: 0;
     border-radius: 1rem;
-    box-shadow: 0 2rem 2rem 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3rem 3rem 0 rgba(0, 0, 0, 0.1);
   }
   
   .card-signin .card-title {
@@ -39,7 +39,6 @@
   
   .form-group input {
     height: auto;
-    border-radius: 2rem;
   }
   
   .form-group>input,
@@ -63,7 +62,6 @@
   }
 
   /*Logo del tec*/
-
   .brand_logo_container {
     position: absolute;
     height: 170px;
@@ -74,11 +72,10 @@
     padding: 10px;
     text-align: center;
   }
+
   .brand_logo {
     height: 150px;
     width: 200px;
     border-radius: 50%;
     border: 2px solid white;
   }
-
-  

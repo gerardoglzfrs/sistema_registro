@@ -1,4 +1,5 @@
 <div style="display: none;" id="error"></div>
+@include('alertas.user_found')
 <div style="display: inline">
     <h4>Registrar alumno</h4>
     <p>Para registrar un nuevo alumno, ingrese su número de control.</p>
@@ -39,7 +40,7 @@
                     <td><input id="ape_p" type="text" class="field left" readonly style="border: none; box-shadow: none;" value="{{ $dato->apellido_paterno }}"></td>
                     <td><input id="ape_m" type="text" class="field left" readonly style="border: none; box-shadow: none;" value="{{ $dato->apellido_materno }}"></td>
                     <td><input id="carrera" type="text" class="field left" readonly size="35" style="border: none; box-shadow: none;" value="{{ $dato->nombre_carrera }}"></td>
-                    <td class="text-center"><button type="submit" onclick="agregar();" class="btn btn-success">registrar</button></span></a></td>
+                    <td class="text-center"><button type="submit" onclick="agregar();" title="Registrar" ><span class="fa fa-save"></span></button></td>
                 {!! Form::close() !!}
               @endforeach
           @endif
@@ -65,7 +66,7 @@
                 <th>Carrera</th>
                 <th>Area</th>
                 <th>Inicio de servicio</th>
-                <th>Horas acomuladas</th>
+                <th>Horas acumuladas</th>
                 <th>Horas restantes</th>
             </tr>
         </thead>
@@ -118,32 +119,31 @@ $('#registrarServicio').click(function(event){
 });
 
 function agregar(){
-        var token = $('#token_agregar').val();
-        var numControl = $('#numControl').val();
-        var nombre = $('#nombre').val();
-        var ape_p = $('#ape_p').val();
-        var ape_m = $('#ape_m').val();
-        var carrera = $('#carrera').val();
-
-        $.ajax({
-            headers: {'X-CSRF-TOKEN': token },
-            url: "{{ url('registrar') }}",
-            method: 'POST',
-            data:{
-                num_control: numControl,
-                nombre: nombre,
-                ape_p: ape_p,
-                ape_m: ape_m,
-                carrera: carrera,
-            },
-            beforeSend: function(){
-                $("#contenido_principal").html("<div class='loader'>Loading...</div>");
-            },
-            success: function(respuesta){
-                menu(2);
-            }
-        });
-    }
+    var token = $('#token_agregar').val();
+    var numControl = $('#numControl').val();
+    var nombre = $('#nombre').val();
+    var ape_p = $('#ape_p').val();
+    var ape_m = $('#ape_m').val();
+    var carrera = $('#carrera').val();
+    $.ajax({
+        headers: {'X-CSRF-TOKEN': token },
+        url: "{{ url('registrar') }}",
+        method: 'POST',
+        data:{
+            num_control: numControl,
+            nombre: nombre,
+            ape_p: ape_p,
+            ape_m: ape_m,
+            carrera: carrera,
+        },
+        beforeSend: function(){
+            $("#contenido_principal").html("<div class='loader'>Loading...</div>");
+        },
+        success: function(respuesta){
+            menu(2);
+        }
+    });
+}
 
 
 $(document).ready(function(){

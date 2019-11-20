@@ -15,6 +15,8 @@ Route::get('/logout', 'logController@logout');
 
 Route::post('add', 'crudController@store');
 Route::get('show', 'crudController@listing');
+Route::get('edit/{id}','crudController@edit');
+Route::put('update/{id}','crudController@update');
 
 Route::post('ops', 'opsController@index');
 
@@ -29,3 +31,11 @@ Route::get('alumnosReg','ssController@alumnosReg');
 //10/noviembre
 Route::post('newStudent','ssController@newStudent');
 Route::post('registrar', 'ssController@addNew');
+
+
+//Example routs
+Route::get('online','ssController@online');
+
+//Graficas
+Route::get('grph/{periodo}','ccController@estadisticas');
+Route::get('showEst','ccController@showEst');
