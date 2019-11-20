@@ -63,7 +63,6 @@ class ccController extends Controller
         return view('graficas.grph',['grph' => $grph, 'periodo'=>$periodo2,'query'=>$query]);
     }
 
-
     public function showEst(){
         if (date("m")>=8) {
             $periodo = date("Y")."-08-01";

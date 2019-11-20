@@ -102,49 +102,50 @@ class ssController extends Controller
         $num_control = $_POST['num_control'];
         $url = "http://167.114.218.98/sistema/services/alumno.php?no_control=".$num_control."";
         $datos = (array)json_decode(file_get_contents($url));
-
-
-        foreach ($datos as $img) {
-            $foto = $img->foto;
-            $url = str_replace("*", "/", $foto);
+        if(sizeof($datos)==0){
+            Session::flash('not_found', 'No existe alumno con ese número de control');
+            return view('vista_ss.historial_Servicio');
+        }else{  
+            foreach ($datos as $img) {
+                $foto = $img->foto;
+                $url = str_replace("*", "/", $foto);
+            }
+            return view('vista_ss.historial_Servicio',['datos'=>$datos, 'img'=>$datos]);
         }
         //return response()->json($datos);
-        return view('vista_ss.historial_Servicio',['datos'=>$datos, 'img'=>$datos]);
     }
 
     public function addNew(Request $request){
         $num_control = $_POST['num_control'];
         $url = "http://167.114.218.98/sistema/services/alumno.php?no_control=".$num_control."";
         $datos = (array)json_decode(file_get_contents($url));
-
-
-        foreach ($datos as $img) {
-            $foto = $img->foto;
-            $url = str_replace("*", "/", $foto);
-
-            $fecha = Carbon::now();
-            $id = $request->num_control;
-            $query = servicio::where('num_control','=',$id);
-            if($query){
-               Session::flash('user_found','El usuario ya se ecuentra registrado');
-               return view('vista_ss.historial_Servicio');
-            }else{
-                $servicio = new servicio();
-                $servicio->num_control = $request->num_control;
-                $servicio->foto = $url;
-                $servicio->nombre = $request->nombre;
-                $servicio->ape_p = $request->ape_p;
-                $servicio->ape_m = $request->ape_m;
-                $servicio->carrera = $request->carrera;
-                $servicio->area = 'Recepción';
-                $servicio->inicio_serv = $fecha->toDateString();
-                $servicio->id = 2;
-                $servicio->save();
-            }
-
-
-            return view('vista_ss.historial_Servicio');
             
+            foreach ($datos as $img) {
+                $foto = $img->foto;
+                $url = str_replace("*", "/", $foto);
+                
+                $query = DB::select('SELECT * FROM alumnos_servicio where num_control = ?', [$num_control]);
+                
+                if($query){
+                    Session::flash('user_found','El usuario ya se ecuentra registrado.');
+                    return view('vista_ss.historial_Servicio');
+                }else{
+                    $fecha = Carbon::now();            
+                
+                    $servicio = new servicio();
+                    $servicio->num_control = $request->num_control;
+                    $servicio->foto = $url;
+                    $servicio->nombre = $request->nombre;
+                    $servicio->ape_p = $request->ape_p;
+                    $servicio->ape_m = $request->ape_m;
+                    $servicio->carrera = $request->carrera;
+                    $servicio->area = 'Recepción';
+                    $servicio->estatus=0;
+                    $servicio->inicio_serv = $fecha->toDateString();
+                    $servicio->id = 2;
+                    $servicio->save();
+            }
+            return view('vista_ss.historial_Servicio');  
         }
     }
 }

@@ -1,5 +1,6 @@
 <div style="display: none;" id="error"></div>
 @include('alertas.user_found')
+@include('alertas.user_notFound')
 <div style="display: inline">
     <h4>Registrar alumno</h4>
     <p>Para registrar un nuevo alumno, ingrese su número de control.</p>
