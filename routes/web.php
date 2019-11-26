@@ -39,3 +39,4 @@ Route::get('online','ssController@online');
 //Graficas
 Route::get('grph/{periodo}','ccController@estadisticas');
 Route::get('showEst','ccController@showEst');
+Route::get('defaultgrph','ccController@defgrph');

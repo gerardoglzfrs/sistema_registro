@@ -10,7 +10,7 @@ use DB;
 use Session;
 
 class ssController extends Controller
-{  
+{
     public function inicioServ(){
         $num_control = $_POST['num_control'];
         $dato = DB::table('alumnos_servicio')->where('num_control',$num_control)->first();
@@ -35,7 +35,7 @@ class ssController extends Controller
             'horas_servicio.hora_sal',
             DB::raw('timediff(horas_servicio.hora_sal,horas_servicio.hora_ent)as total')
         )->get();
-        
+
         return response()->json($dato->toArray());
     }
 
@@ -70,19 +70,25 @@ class ssController extends Controller
     public function store(Request $request)
     {
         $fecha = Carbon::now();
-        if(Hour::where('num_control',$request['num_control'])->where('hora_sal',null)->where('fecha',$fecha->toDateString())->first()){
-            $this->update($request['num_control']);
+        $sql = DB::select('select * from alumnos_servicio where num_control = ?', [$request['num_control']]);
+        if(sizeof($sql)==0){
+            Session::flash('not_found', 'User not found');
+            return view('vista_ss.servicio');
         }else{
-            $fecha = Carbon::now();
-            $serv = new Hour();
-            $serv->num_control = $request['num_control'];
-            $serv->fecha = $fecha->toDateString();
-            $serv->hora_ent = $fecha->toTimeString();
-            $serv->save();
+            if (Hour::where('num_control', $request['num_control'])->where('hora_sal', null)->where('fecha', $fecha->toDateString())->first()) {
+                $this->update($request['num_control']);
+            } else {
+                $fecha = Carbon::now();
+                $serv = new Hour();
+                $serv->num_control = $request['num_control'];
+                $serv->fecha = $fecha->toDateString();
+                $serv->hora_ent = $fecha->toTimeString();
+                $serv->save();
 
-            DB::table('alumnos_servicio')
-            ->where('num_control',$request['num_control'])
+                DB::table('alumnos_servicio')
+            ->where('num_control', $request['num_control'])
             ->update(array('estatus'=>1));
+            }
         }
     }
 
@@ -105,7 +111,7 @@ class ssController extends Controller
         if(sizeof($datos)==0){
             Session::flash('not_found', 'No existe alumno con ese número de control');
             return view('vista_ss.historial_Servicio');
-        }else{  
+        }else{
             foreach ($datos as $img) {
                 $foto = $img->foto;
                 $url = str_replace("*", "/", $foto);
@@ -119,19 +125,19 @@ class ssController extends Controller
         $num_control = $_POST['num_control'];
         $url = "http://167.114.218.98/sistema/services/alumno.php?no_control=".$num_control."";
         $datos = (array)json_decode(file_get_contents($url));
-            
+
             foreach ($datos as $img) {
                 $foto = $img->foto;
                 $url = str_replace("*", "/", $foto);
-                
+
                 $query = DB::select('SELECT * FROM alumnos_servicio where num_control = ?', [$num_control]);
-                
+
                 if($query){
                     Session::flash('user_found','El usuario ya se ecuentra registrado.');
                     return view('vista_ss.historial_Servicio');
                 }else{
-                    $fecha = Carbon::now();            
-                
+                    $fecha = Carbon::now();
+
                     $servicio = new servicio();
                     $servicio->num_control = $request->num_control;
                     $servicio->foto = $url;
@@ -142,10 +148,10 @@ class ssController extends Controller
                     $servicio->area = 'Recepción';
                     $servicio->estatus=0;
                     $servicio->inicio_serv = $fecha->toDateString();
-                    $servicio->id = 2;
+                    $servicio->id = 4;
                     $servicio->save();
             }
-            return view('vista_ss.historial_Servicio');  
+            return view('vista_ss.historial_Servicio');
         }
     }
 }

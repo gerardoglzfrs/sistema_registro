@@ -22,17 +22,32 @@
                             <a href="#" onclick="menu(3);"><i class="fa fa-eraser"></i> Registros</a>
                         </li>
                         <li>
-                            <a href="#" onclick="menu(4);"><i class="fa fa-eraser"></i> Estadisticas</a>
+                            <a href="#" id="grphdefault"><i class="fa fa-eraser"></i> Estadisticas</a>
                         </li>
                     </ul>
                 </div>
             </li>
         </ul>
     </div>
-    
+
     <div class="sidebar-menu">
         <ul>
             <li class="header-menu"><span>Consulta</span></li>
             <li class="sidebar-dropdown"><a href="#" onclick="menu(5);"><i class="fa fa-user"></i><span> Usuarios</span></a></li>
         </ul>
     </div>
+    <script src="{{ asset("js/jquery.min.js") }}"></script>
+    <script>
+        $("#grphdefault").click(function (){
+            $.ajax({
+                url: "defaultgrph",
+                method: "GET",
+                beforeSend: function(){
+                    $("#contenido_principal").html("<div class='loader'> loading... </div>");
+                },
+                success: function(respuesta){
+                    $("#contenido_principal").html(respuesta);
+                }
+            });
+        });
+    </script>

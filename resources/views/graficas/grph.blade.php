@@ -1,3 +1,4 @@
+@include('alertas.user_notFound')
 <script src="{{ asset('js/loader.js') }}"></script>
 <script>
 function btnshow(value) {
@@ -100,7 +101,6 @@ echo "
 }
 var R;
 $(window).resize(function(){
-
     this.drawChart2();
  });
  window.onclick= function(){
@@ -108,9 +108,7 @@ $(window).resize(function(){
      R = window.setInterval('Reload()',1);
  }
  function Reload() {
-
     this.drawChart2();
-
  }
  function stop(){
      window.clearInterval(R);

@@ -55,11 +55,11 @@
                 <a data-toggle="modal" data-target="#modalConfirm"><i class="fa fa-sign-out-alt"></i></a>
             </div>
         </nav>
-       
+
         <!-- Contenido principal -->
-    <main class="page-content"> 
+    <main class="page-content">
         <div class="container" id="contenido_principal">
-        
+
         </div>
     </main>
 </div>
@@ -102,4 +102,4 @@
 </body>
 </html>
 
-
+    

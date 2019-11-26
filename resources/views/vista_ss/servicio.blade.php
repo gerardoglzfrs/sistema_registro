@@ -1,4 +1,5 @@
 <div style="display: none;" id="error"></div>
+@include('alertas.user_notFound')
 <h4>Iniciar servicio</h4>
 <p>Para iniciar y finalizar el proceso ingrese el numero de control.</p>
 {!! Form::open(['class'=>'form-inline md-form mr-auto mb-4', 'method'=>'POST']) !!}
@@ -30,7 +31,7 @@
         </tr>
     </thead>
     <tbody id="alumnosServ" style="font-size: 10px;">
-      
+
     </tbody>
 </table>
 
@@ -71,12 +72,12 @@ $('#inicioServ').click(function(event){
             },
             success: function(respuesta){
             //$("#contenido_principal").html(respuesta);
-            menu(1);  
+            menu(1);
             }
         });
     }
 });
-    
+
 $(document).ready(function(){
     var tabla = $("#alumnosServ");
     var ruta= "{{ url('alumnosServ') }}";
@@ -88,7 +89,7 @@ $(document).ready(function(){
             value.hora_sal='<span style="color: green;"><b>En espera</b></span>'
             value.total='<span style="color: blue;"><b>Contando...</b></span>'
         }
-        tabla.append("<tr> <td>"+contador+"</td><td id='altimg"+contador+"'><img src='"+value.foto+"' onerror='alterna("+contador+");' style='width: 50px;  height: 50px;'></td><td>"+value.num_control+"</td><td>"+value.nombre+"</td><td>"+value.ape_p+"</td> <td>"+value.ape_m+"</td><td>"+value.carrera+"</td><td>"+value.fecha+"</td><td>"+value.hora_ent+"</td>  <td>"+value.hora_sal+"</td> <td>"+value.total+"</td> </tr>"); 
+        tabla.append("<tr> <td>"+contador+"</td><td id='altimg"+contador+"'><img src='"+value.foto+"' onerror='alterna("+contador+");' style='width: 50px;  height: 50px;'></td><td>"+value.num_control+"</td><td>"+value.nombre+"</td><td>"+value.ape_p+"</td> <td>"+value.ape_m+"</td><td>"+value.carrera+"</td><td>"+value.fecha+"</td><td>"+value.hora_ent+"</td>  <td>"+value.hora_sal+"</td> <td>"+value.total+"</td> </tr>");
        });
     });
 });

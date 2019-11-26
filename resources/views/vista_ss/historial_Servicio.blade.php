@@ -12,6 +12,7 @@
         {!! Form::close() !!}
 </div>
 
+@if (isset($datos)&&count($datos)>0)
 <div id="mostrarDatos" style="display: none;">
     <table class="table table-responsive" style="font-size: 11px;">
         <thead>
@@ -28,9 +29,8 @@
                 <th>Opción</th>
             </tr>
         </thead>
-        <tbody id="alumnosServ">
+        <tbody id="alumnosSerEv">
           <tr>
-              @if (isset($datos))
               @foreach ($datos as $dato)
                 {!! Form::open(['method'=>'POST', 'id'=>'agregar']) !!}
                     @csrf
@@ -44,11 +44,11 @@
                     <td class="text-center"><button type="submit" onclick="agregar();" title="Registrar" ><span class="fa fa-save"></span></button></td>
                 {!! Form::close() !!}
               @endforeach
-          @endif
-          </tr>
+            </tr>
         </tbody>
     </table>
 </div>
+@endif
 
 
 <table class="table table-responsive table-hover" style="font-size: 10px;">
@@ -72,16 +72,16 @@
             </tr>
         </thead>
         <tbody id="alumnosReg">
-           
+
         </tbody>
     </table>
-    
+
 <script>
 $('#registrarServicio').click(function(event){
     event.preventDefault();
     var num_control = $('#num_control').val();
     var token_Service = $('#token_Service').val();
-    
+
     if(num_control==""){
       $(document).ready(function(){
       setTimeout(function(){
@@ -114,7 +114,7 @@ $('#registrarServicio').click(function(event){
             success: function(respuesta){
             $('#contenido_principal').html(respuesta);
             $('#mostrarDatos').show();
-            } 
+            }
         });
     }
 });
@@ -169,4 +169,3 @@ function alterna(contador){
     $(contador).html("<img style='width: 50px;  height: 50px;' src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9VL5EX1RHB-K4sJ7kjE7AEwMMLKNBc9KWi3PT5HBmCIkwga8P' />");
   }
 </script>
-        

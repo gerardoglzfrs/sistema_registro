@@ -14,7 +14,6 @@ class ccController extends Controller
         $num_control = $_POST['num_control'];
         $url = "http://167.114.218.98/sistema/services/alumno.php?no_control=".$num_control."";
         $datos = (array)json_decode(file_get_contents($url));
-        
         if(sizeof($datos)==0){
             Session::flash('not_found', 'No existe alumno con ese número de control');
             return view('vista_cc.registros');
@@ -29,7 +28,7 @@ class ccController extends Controller
 
             $url = str_replace("*","/", $foto);
             $fecha = Carbon::now();
-         
+
             $student = new Student();
             $student->foto = $url;
             $student->num_control = $no_control;
@@ -44,7 +43,7 @@ class ccController extends Controller
             }
         }
     }
-    
+
     public function showStudents(){
         $students = Student::where('fecha',Carbon::now()->toDateString())->orderBy('hora_ent','desc')->get();
         return response()->json($students->toArray());
@@ -60,7 +59,12 @@ class ccController extends Controller
         }
         $grph = DB::select("SELECT carrera, COUNT(*) 'total' from registros where fecha BETWEEN ? and ? GROUP BY carrera", [$periodo, $final]);
         $query = DB::select('SELECT MONTH(fecha) AS mes, COUNT(*) "total" from registros WHERE fecha BETWEEN ? and ? GROUP BY MONTH(fecha)', [$periodo,$final]);
-        return view('graficas.grph',['grph' => $grph, 'periodo'=>$periodo2,'query'=>$query]);
+        if(sizeof($grph)==0 || sizeof($query)==0){
+            Session::flash('not_found', 'No existen registros del periodo seleccionado');
+            return view('graficas.grph');
+        }else{
+            return view('graficas.grph', ['grph' => $grph, 'periodo'=>$periodo2,'query'=>$query]);
+        }
     }
 
     public function showEst(){
@@ -73,7 +77,29 @@ class ccController extends Controller
         }
 
         $grph = DB::select("SELECT carrera, COUNT(*) 'total' from registros where fecha BETWEEN ? and ? GROUP BY carrera",[$periodo,$final]);
+        if(sizeof($grph)==0){
+            Session::flash('not_found', 'No existen registros del periodo seleccionado');
+            return view('graficas.grph');
+        }else{
+            return response()->json($grph);
+        }
+    }
+
+    public function defgrph(){
+        if (date("m")>=8) {
+            $periodo = date("Y")."-08-01";
+            $final = date("Y")."-12-30";
+        }else{
+            $periodo = date("Y")."-01-01";
+            $final = date("Y")."-05-30";
+        }
+        $periodo2 = "actual";
         $query = DB::select('SELECT MONTH(fecha) AS mes, COUNT(*) "total" from registros WHERE fecha BETWEEN ? and ? GROUP BY MONTH(fecha)', [$periodo,$final]);
-        return response()->json($grph);
+        if(sizeof($query)==0){
+            Session::flash('not_found', 'No existen registros del periodo seleccionado');
+            return view('graficas.grph');
+        }else{
+            return view('graficas.grph', ['periodo'=>$periodo2,'query'=>$query]);
+        }
     }
 }
