@@ -26,7 +26,7 @@
                 <div class="card-header"><b><span class="fa fa-laptop"></span> Centro de computo</b></div>
                     <div class="card-body">
                         <div class="container">
-                            <img src="{{ asset('img/servicioSocial.png') }}" alt="" class="card-img-top">
+                            <img src="{{ asset('img/recepcion.png') }}" alt="" class="card-img-top">
                         </div>
                         <hr class="my-3">
                         <p class="card-text text-justify" style="font-size: 0.875em">En este apartado se llevara a cabo el registro de los alumnos que ingresan al centro de computo. Tambien podra ver estadisticas de los registros de entrada.</p>
@@ -43,7 +43,7 @@
                 <div class="card-header"><b><span class="fa fa-user-circle"></span> Usuarios del sistema</b></div>
                     <div class="card-body">
                         <div class="container">
-                            <img src="{{ asset('img/servicioSocial.png') }}" alt="" class="card-img-top">
+                            <img src="{{ asset('img/users.png') }}" alt="" class="card-img-top">
                         </div>
                         <hr class="my-3">
                         <p class="card-text text-justify" style="font-size: 0.875em">En esta sección podrá ver y editar el nombre de los usuarios asi como sus contraseñas.</p>
